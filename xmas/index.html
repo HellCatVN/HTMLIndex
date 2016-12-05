@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Merry Christmas</title>
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Lobster+Two:400,400italic,700,700italic|Mountains+of+Christmas:400,700'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="assets/styles/core.css" media="all" />
+    <!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="assets/styles/coreIe.css" />
+	<![endif]-->
+    <link rel="stylesheet" type="text/css" href="assets/styles/refineslide.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/refineslide-theme-dark.css"
+        media="all" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/thickbox.css" media="all" />
+    <script type="text/javascript" src="assets/scripts/jquery.js"></script>
+    <script type="text/javascript" src="assets/scripts/thickbox.js"></script>
+    <script type="text/javascript" src="assets/scripts/jQueryRotate.js"></script>
+    <script type="text/javascript" src="assets/scripts/modernizr.js"></script>
+    <script type="text/javascript" src="assets/scripts/jquery.validate.pack.js"></script>
+    <script type="text/javascript" src="assets/scripts/jquery.jplayer.js"></script>
+    <script type="text/javascript" src="assets/scripts/ttw-music-player.js"></script>
+    <script type="text/javascript" src="assets/scripts/myplaylist.js"></script>
+    <script type="text/javascript" src="assets/scripts/custom.js"></script>
+    <script type="text/javascript" src="assets/scripts/snow.js"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+        $(document).ready(function () {
+            var d;
+            $('a.send').click(function () {
+
+                /*function which validates input with required class in contact page */
+                var myform = $("#eCard").validate({
+                    errorPlacement: function (error, element) {
+                        error.appendTo();
+                    }
+                }).form();
+
+                /*myform returns true if form is valid.*/
+                if (myform) {
+                    var action = $('#eCard').attr('action');
+                    $.post(action, {
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        message: $('#message').val()
+                    },
+				function (data) {
+				    d = data;
+				    $('.success').remove();
+				    $('.not').remove();
+
+				    if (data == 'Message sent!') {
+				        $('#eCard a.send').attr('disabled', '');
+				        $('#eCard').append('<p class="success"></p>');
+				    }
+				    else {
+				        $('#eCard').append('<p class="not"></p>');
+				    }
+				})
+                }
+            });
+        });
+        // ]]>
+    </script>
+</head>
+<body>
+    <div class="christmas">
+        <div id="player" style="display: none;">
+        </div>
+        <div class="headLeft">
+        </div>
+        <div class="headRight">
+        </div>
+        <img class="rotate" src="assets/images/bgRotate.png" alt="rotate" />
+        <div id="cntdwn" class="counter">
+        </div>
+        <div class="dynamicMessage">
+            Hell Cat VN ♥</div>
+        <div class="sliderWrap">
+            <div class="sliderInner">
+                <ul id="images" class="rs-slider">
+                    <li class="group"><a href="javascript:;">
+                        <img src="assets/images/Slider/01.png" alt="" />
+                    </a></li>
+                    <li class="group"><a href="javascript:;">
+                        <img src="assets/images/Slider/02.png" alt="" />
+                    </a></li>
+                    <li class="group"><a href="javascript:;">
+                        <img src="assets/images/Slider/03.png" alt="" />
+                    </a></li>
+                </ul>
+            </div>
+            <div class="sliderBottom">
+                <img src="assets/images/sliderBottom.png" width="706" height="214" alt="sliderBottom" />
+            </div>
+        </div>
+        <div class="footerWrap">
+            <div class="footerInner">
+                <img class="link" src="assets/images/footerLink.png" usemap="#visitLink" alt="footerLink" />
+                <map id="visitLink" name="visitLink">
+                    <area href="https://meomeoilu.blogspot.com/" coords="165,190,300,215" alt="" />
+                </map>
+                <img class="logo" src="assets/images/logo.png" alt="logo" />
+                <span class="copyright">© 2016 X-Mas LANDING PAGE TEMPLATE by <a href="https://www.facebook.com/hellcat.info"
+                    target="_blank" class="red">Hell Cat VN</a></span>
+                <ul class="social">
+                    <li><a class="tw" href="#">Twitter <span class="mask">
+                        Twitter </span></a></li>
+                    <li><a class="fb" href="https://www.facebook.com/hellcat.info">Facebook<span class="mask">Facebook</span></a>
+                    </li>
+                    <li><a class="mail" href="javascript:;">Mail<span class="mask">E-Card Sender</span></a>
+                        <div class="emailSender">
+                            <form id="eCard" action="http://www.profmethemes.com/Theme/Christmas/ecard.php" method="get">
+                            <span>from</span>
+                            <p>
+                                <label for="name">
+                                    Your Name</label>
+                                <input type="text" id="name" name="name" class="required" maxlength="25" />
+                            </p>
+                            <span>To</span>
+                            <p>
+                                <label for="email">
+                                    Friend's Email</label>
+                                <input type="text" id="email" name="email" class="required" maxlength="25" />
+                            </p>
+                            <span>Your Message</span>
+                            <p>
+                                <label for="message">
+                                    Message for Friend's</label>
+                                <input type="text" id="message" name="message" class="required" maxlength="25" />
+                            </p>
+                            <a href="javascript:;" class="prev">Preview</a> <a href="javascript:;" class="send">
+                                Send</a>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript">
+    // <![CDATA[
+        TargetDate = "12/25/2016 00:00 AM";
+        BackColor = "transparent";
+        ForeColor = "navy";
+        CountActive = true;
+        CountStepper = -1;
+        LeadingZero = true;
+        DisplayFormat = '<span class="day">%%D%% Days</span> <span class="time">%%H%%:%%M%%:%%S%%</span>';
+        FinishMessage = '<span class="day">Happy New Year!</span>';
+        // ]]>
+    </script>
+    <script type="text/javascript" src="assets/scripts/countDown.js"></script>
+    <script type="text/javascript" src="assets/scripts/jquery.refineslide.min.js"></script>
+    <script type="text/javascript" src="assets/scripts/ios-orientation-change-fix.js"></script>
+</body>
+</html>

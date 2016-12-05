@@ -1,0 +1,124 @@
+/* Add additional stylesheets below
+-------------------------------------------------- */
+/*
+  Custom style for your theme
+*/
+
+
+
+/* Body and structure
+-------------------------------------------------- */
+
+
+html, body				{ height: 100%; }
+body 					{ font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: 21px; color: #333; }
+a:focus					{ outline: none; }
+
+
+/*** Header ***/
+header					{}
+header h1				{ font-size: 30px; line-height: 48px; font-weight: 400; text-transform: uppercase; }
+#logo					{ float: none; margin: 10px auto 0; height: 136px; }
+
+
+/*** Usefull clases ***/
+.pull-center 			{ text-align: center; }
+
+
+/*** Colors ***/
+.red-text				{ color: #d60c07; }
+
+
+/*** Content ***/
+.content				{ height: 100%; display:table; }
+.main					{ display: table-cell; vertical-align: middle; position: relative; z-index: 40; }
+
+#static-snow			{ width: 100%; height: 100%; position: absolute; margin-left:0; margin-right:0; left: 0; right: 0; }
+#top-image				{ position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; z-index: -1; background: url(../img/top_img_01.jpg) center top no-repeat; width: 100%; height: 100%; background-size:contain; }
+
+
+/*** Custom button ***/
+.btn-custom				{
+						  color: #ffffff;
+						  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+						  background-color: #e5130e;
+						  *background-color: #d30a05;
+						  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e5130e), to(#d30a05));
+						  background-image: -webkit-linear-gradient(top, #e5130e, #d30a05);
+						  background-image: -o-linear-gradient(top, #e5130e, #d30a05);
+						  background-image: linear-gradient(to bottom, #e5130e, #d30a05);
+						  background-image: -moz-linear-gradient(top, #e5130e, #d30a05);
+						  background-repeat: repeat-x;
+						  border-color: #e4130e #e4130e #d70c07;
+						  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+						  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffe5130e', endColorstr='#ffd30a05', GradientType=0);
+						  filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+						  position: relative; z-index: 100;
+						}
+.btn-custom:hover,
+.btn-custom:active,
+.btn-custom.active,
+.btn-custom.disabled,
+.btn-custom[disabled]	{
+						  color: #ffffff;
+						  background-color: #d30a05;
+						  *background-color: #e5130e;
+						}
+.btn-custom:active,
+.btn-custom.active		{ background-color: #003399 \9; }
+
+
+/*** Bottom section ***/
+.bottom-tree			{ position: fixed; margin-left: auto; margin-right: auto; left: 0; right: 0; bottom: 60px; z-index: 30; }
+.snow					{ height: 100px; background: url(../img/snow.png) left bottom repeat-x; width: 100%; position: fixed; left:0; bottom: 40px; z-index: 20; }
+
+/*** Footer ***/
+footer					{ background: #fff; height: 40px; position: fixed; width: 100%; z-index: 10; left: 0; bottom: 0; text-align: center; color: #acacac; }
+
+
+/*** Snow animation ***/
+.snow-panel				{ position: fixed !important; z-index: 1 !important; width: 100%; height: 100%; top: 0; left: 0; }
+
+
+
+
+
+
+
+
+
+/*** RESPONSIVE REWRITE DEFAULT **********************/
+
+
+
+@media (min-width: 768px) and (max-width: 979px) {
+	header h1				{ font-size: 22px; line-height: 40px;}
+	}
+@media (max-width: 767px) {
+	header h1				{ font-size: 16px; line-height: 34px;}
+	.content				{ display: block; }
+	.main					{ display: block; }
+	.bottom-tree			{ width: 224px; bottom: 20px; }
+	.snow					{ bottom: 0; }
+}
+@media (min-width: 1200px) {}
+@media (min-width: 768px) and (max-width: 979px) {}
+@media (max-width: 767px) {}
+@media (max-width: 480px) {
+	#logo					{ margin: 10px auto 0 !important; height: 74px; width: 200px; }
+	.text-normal			{ font-size: 12px; line-height: 18px; }
+	.bottom-tree			{ bottom: 20px; }
+	.snow					{ bottom: 0; }
+	p						{ margin: 0 0 5px !important; }
+}
+
+@media (max-width: 979px) {}
+@media (min-width: 980px) {
+	header h1				{ font-size: 28px; line-height: 46px;}
+	
+	}
+
+
+
+
+

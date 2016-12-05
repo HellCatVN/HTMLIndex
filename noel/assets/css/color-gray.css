@@ -1,0 +1,19 @@
+/* Custom color
+-------------------------------------------------- */
+
+body 					{ background: #555555 url(../img/grd_main_gray.png) center top repeat-y; }
+#logo					{ background: url(../img/your_logo_white.png) center top no-repeat; background-size:contain; }
+
+.change-color			{ color: #fff; }
+.text-normal			{ color: #fff; }
+
+.merry					{ background: url(../img/merry_christmas_white.png) no-repeat; background-size: contain; }
+#static-snow			{ background: url(../img/snowflakes_static_transparency.png) center top no-repeat; }
+
+
+/***  Hihe backgound image  ***/
+.notshown				{ display: none; }
+
+
+
+
