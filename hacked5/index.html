@@ -1,0 +1,680 @@
+﻿
+<title>Mèo-LoliTeam</title>
+
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Algerian;
+	font-size: xx-large;
+	color: #00CC00;
+}
+.style3 {
+	font-family: "Copperplate Gothic Bold";
+	color: #00ff00;
+	font-size: xx-large;
+}
+.style4 {
+	color: #00CC00;
+	font-family: Chiller;
+	font-size: xx-large;
+}
+.style5 {
+	color: #ffffff;
+	font-family: Chiller;
+	font-size: 20px;
+}
+.style6 {color: #FF0000;
+	font-size: 25px;}
+
+-->
+</style>
+<body background="https://d2vd5uo799806j.cloudfront.net/d/6/6/d665ac0c8f2b5fcc7bd41c22a9028294.gif" bgcolor="#000000">
+
+<script language="javascript">
+
+var text=' Mèo-LoliTeam ';
+
+var delay=10;
+var Xoff=0;
+var Yoff=15;
+var txtw=10;
+var beghtml='<font color="red"><b>';
+var endhtml='</b></font>';
+ns4 = (navigator.appName.indexOf("Netscape")>=0 && document.layers)? true : false;
+ie4 = (document.all && !document.getElementById)? true : false;
+ie5 = (document.all && document.getElementById)? true : false;
+ns6 = (document.getElementById && navigator.appName.indexOf("Netscape")>=0 )? true: false;
+var txtA=new Array();
+text=text.split('');
+var x1=0;
+var y1=-1000;
+var t='';
+for(i=1;i<=text.length;i++){
+t+=(ns4)? '<layer name="txt'+i+'" top="-100" left="0" width="'+txtw+'" height="1">' : '<div id="txt'+i+'" style="position:absolute; top:-100px; left:0px; height:1px; width:'+txtw+'; visibility:visible;">';
+t+=beghtml+text[i-1]+endhtml;
+t+=(ns4)? '</layer>' : '</div>';
+}
+document.write(t);
+function moveid(id,x,y){
+if(ns4)id.moveTo(x,y);
+else{
+id.style.left=x+'px';
+id.style.top=y+'px';
+}}
+function animate(evt){
+x1=Xoff+((ie4||ie5)?event.clientX+document.body.scrollLeft:evt.pageX);
+y1=Yoff+((ie4||ie5)?event.clientY+document.body.scrollTop:evt.pageY);
+}
+function getidleft(id){
+if(ns4)return id.left;
+else return parseInt(id.style.left);
+}
+function getidtop(id){
+if(ns4)return id.top;
+else return parseInt(id.style.top);
+}
+function getwindowwidth(){
+if(ie4||ie5)return document.body.clientWidth+document.body.scrollLeft;
+else return window.innerWidth+pageXOffset;
+}
+function movetxts(){
+for(i=text.length;i>1;i=i-1){
+if(getidleft(txtA[i-1])+txtw*2>=getwindowwidth()){
+moveid(txtA[i-1],0,-1000);
+moveid(txtA[i],0,-1000);
+}else moveid(txtA[i], getidleft(txtA[i-1])+txtw, getidtop(txtA[i-1]));
+}
+moveid(txtA[1],x1,y1);
+}
+window.onload=function(){
+for(i=1;i<=text.length;i++)txtA[i]=(ns4)?document.layers['txt'+i]:(ie4)?document.all['txt'+i]:document.getElementById('txt'+i);
+if(ns4)document.captureEvents(Event.MOUSEMOVE);
+document.onmousemove=animate;
+setInterval('movetxts()',delay);
+}
+</script>
+
+<head>
+<style>
+<!--
+.intro{
+position:absolute;
+left:0;
+top:0;
+layer-background-color:#00CC00;
+background-color:#000000;
+border:0.1px solid green;
+z-index:10;
+}
+-->
+</style>
+</head>
+<body>
+<div id="p1" class="intro"></div>
+<div id="p2" class="intro"></div>
+
+<div id="p3" class="intro"></div>
+<div id="p4" class="intro"></div>
+<div id="p5" class="intro"></div>
+<div id="p6" class="intro"></div>
+<div id="p7" class="intro"></div>
+<div id="p8" class="intro"></div>
+<div id="p9" class="intro"></div>
+<div id="p10" class="intro"></div>
+<div id="p11" class="intro"></div>
+<div id="p12" class="intro"></div>
+<div id="p13" class="intro"></div>
+<div id="p14" class="intro"></div>
+<div id="p15" class="intro"></div>
+<div id="p16" class="intro"></div>
+<div id="p17" class="intro"></div>
+<div id="p18" class="intro"></div>
+<div id="p19" class="intro"></div>
+
+<div id="p20" class="intro"></div>
+<div id="p21" class="intro"></div>
+<div id="p22" class="intro"></div>
+<div id="p23" class="intro"></div>
+<div id="p24" class="intro"></div>
+<div id="p25" class="intro"></div>
+
+<script>
+
+/*
+Boxing-away Script- By Dynamic Drive (www.dynamicdrive.com)
+For full source code, 100's more free DHTML scripts, and TOS,
+visit http://www.dynamicdrive.com
+*/
+
+
+var espeed=300
+var counter=1
+var temp=new Array()
+var temp2=new Array()
+
+var ns4=document.layers?1:0
+var ie4=document.all?1:0
+var ns6=document.getElementById&&!document.all?1:0
+
+
+////////Code for Netscape NS 4+////
+if (ns4){
+for (i=1;i<=25;i++){
+temp[i]=eval("document.p"+i+".clip")
+temp2[i]=eval("document.p"+i)
+temp[i].width=window.innerWidth/5
+temp[i].height=window.innerHeight/5
+}
+
+for (i=1;i<=5;i++)
+temp2[i].left=(i-1)*temp[i].width
+
+for (i=6;i<=10;i++){
+temp2[i].left=(i-6)*temp[i].width
+temp2[i].top=temp[i].height
+}
+
+for (i=11;i<=15;i++){
+temp2[i].left=(i-11)*temp[i].width
+temp2[i].top=2*temp[i].height
+}
+
+for (i=16;i<=20;i++){
+temp2[i].left=(i-16)*temp[i].width
+temp2[i].top=3*temp[i].height
+}
+
+for (i=21;i<=25;i++){
+temp2[i].left=(i-21)*temp[i].width
+temp2[i].top=4*temp[i].height
+}
+
+}
+
+function erasecontainerns(){
+window.scrollTo(0,0)
+var whichcontainer=Math.round(Math.random()*25)
+if (whichcontainer==0)
+whichcontainer=1
+if (temp2[whichcontainer].visibility!="hide")
+temp2[whichcontainer].visibility="hide"
+else{
+while (temp2[whichcontainer].visibility=="hide"){
+whichcontainer=Math.round(Math.random()*25)
+if (whichcontainer==0)
+whichcontainer=1
+}
+temp2[whichcontainer].visibility="hide"
+}
+
+if (counter==25)
+clearInterval(beginerase)
+
+counter++
+espeed-=10
+
+}
+
+
+////////End code for NS 4+////////
+
+
+///////////Code for IE 4+ and NS6/////////
+
+if (ie4||ns6){
+var containerwidth=ns6?parseInt(window.innerWidth)/5-3 : parseInt(document.body.clientWidth/5)
+var containerheight=ns6?parseInt(window.innerHeight)/5-2 : parseInt(document.body.offsetHeight/5)
+
+for (i=1;i<=25;i++){
+temp[i]=ns6?document.getElementById("p"+i).style : eval("document.all.p"+i+".style")
+temp[i].width=containerwidth
+temp[i].height=containerheight
+}
+
+for (i=1;i<=5;i++)
+temp[i].left=(i-1)*containerwidth
+
+for (i=6;i<=10;i++){
+temp[i].left=(i-6)*containerwidth
+temp[i].top=containerheight
+}
+
+for (i=11;i<=15;i++){
+temp[i].left=(i-11)*containerwidth
+temp[i].top=2*containerheight
+}
+
+for (i=16;i<=20;i++){
+temp[i].left=(i-16)*containerwidth
+temp[i].top=3*containerheight
+}
+
+for (i=21;i<=25;i++){
+temp[i].left=(i-21)*containerwidth
+temp[i].top=4*containerheight
+}
+}
+
+function erasecontainerie(){
+window.scrollTo(0,0)
+var whichcontainer=Math.round(Math.random()*25)
+if (whichcontainer==0)
+whichcontainer=1
+if (temp[whichcontainer].visibility!="hidden")
+temp[whichcontainer].visibility="hidden"
+else{
+while (temp[whichcontainer].visibility=="hidden"){
+whichcontainer=Math.round(Math.random()*25)
+if (whichcontainer==0)
+whichcontainer=1
+}
+temp[whichcontainer].visibility="hidden"
+}
+
+if (counter==25){
+clearInterval(beginerase)
+if (ns6){
+for (i=1;i<26;i++)
+temp[i].display="none"
+}
+}
+counter++
+espeed-=10
+
+}
+
+/////////End IE 4+ code////////
+
+if (ns4)
+beginerase=setInterval("erasecontainerns()",espeed)
+else if (ie4||ns6){
+beginerase=setInterval("erasecontainerie()",espeed)
+}
+
+
+</script>
+</body>
+
+</head><body bgcolor="white"><link href='http://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/800px-Flag_of_Vietnam.svg.png' rel='shortcut icon'/> </title>
+<script> 
+var width=document.body.clientWidth;
+var height=document.body.clientHeight;
+
+function doClickText(who,type,step,timeOut) {
+document.getElementById(who).style.display="none";
+if(type==0) {
+reveal('revealDiv1',step,timeOut,0);
+reveal('revealDiv2',step,timeOut,1);}
+if(type==1) {
+reveal('revealDiv1',step,timeOut,2);
+reveal('revealDiv2',step,timeOut,3);}}
+function reveal(who,step,timeOut,type) {
+if(type==0)
+var where="top";
+if(type==1)
+var where="bottom";
+if(type==2)
+var where="left";
+if(type==3)
+var where="right";
+eval('var temp=document.getElementById(who).style.'+where);
+temp=parseInt(temp);
+if(type==0||type==1)
+var checkWith=height/2;
+if(type==2||type==3)
+var checkWith=width/2;
+if(-temp<checkWith) {
+
+temp-=step;
+
+eval('document.getElementById(who).style.'+where+'=temp;');
+
+setTimeout("reveal('"+who+"',"+step+",'"+timeOut+"',"+type+")", timeOut);}
+
+else {
+
+document.getElementById(who).style.display="none";
+
+document.body.scroll="yes";}}
+
+function initReveal(type,div1bg,div2bg,div1bw,div2bw,div1bc,div2bc,step,timeOut,click) {
+
+if(type==0) {
+
+var bWhere1="border-bottom";
+
+var bWhere2="border-top";
+
+var putZero1="top:0px; left:0px";
+
+var putZero2="bottom:0px; left:0px";
+
+document.write('<div id="revealDiv1" style="z-index:100; display:block; position:absolute; '+putZero1+'; background:'+div1bg+' ; width:'+(width)+'; height:'+(height/2)+'; '+bWhere1+':'+div1bc+' solid '+div1bw+'px"></div>');
+document.write('<div id="revealDiv2" style="z-index:100; display:block; position:absolute; '+putZero2+'; background:'+div2bg+' ; width:'+(width)+'; height:'+(height/2)+'; '+bWhere2+':'+div2bc+' solid '+div2bw+'px"></div>');
+if(!click) {
+reveal('revealDiv1',step,timeOut,0);
+reveal('revealDiv2',step,timeOut,1);}
+
+else {
+clickText(type,step,timeOut);}}
+
+if(type==1) {
+var bWhere1="border-right";
+var bWhere2="border-left";
+var putZero1="top:0px; left:0px";
+var putZero2="top:0px; right:0px";
+document.write('<div id="revealDiv1" style="z-index:100; display:block; position:absolute; '+putZero1+'; background:'+div1bg+' ; width:'+(width/2)+'; height:'+(height)+'; '+bWhere1+':'+div1bc+' solid '+div1bw+'px"></div>');
+document.write('<div id="revealDiv2" style="z-index:100; display:block; position:absolute; '+putZero2+'; background:'+div2bg+' ; width:'+(width/2)+'; height:'+(height)+'; '+bWhere2+':'+div2bc+' solid '+div2bw+'px"></div>');
+if(!click) {
+reveal('revealDiv1',step,timeOut,2);
+reveal('revealDiv2',step,timeOut,3);}
+else {
+clickText(type,step,timeOut);}}
+function clickText(type,step,timeOut) {
+document.write('<div id="clickText" style="z-index:101; display:block; position:absolute; top:'+(height/2-clickh/2-clickb)+'; left:'+(width/2-clickw/2-clickb)+'"><table style="border:'+clickc+' solid '+clickb+'px; background:'+clickbg+' ;width:'+clickw+'px; height:'+clickh+'; '+clickFont+'; cursor:hand; cursor:pointer" onClick="doClickText(\'clickText\','+type+','+step+','+timeOut+')"><tr><td align="middle">'+clickt+'</td></tr></table></div>');}}
+</SCRIPT> 
+<html><head>
+<meta http-equiv="Content-Language" content="en-us">
+
+
+
+<title>Mèo-LoliTeam</title>
+</head><center>
+<body onLoad="type_text()" ; bgColor=#000000 text=#00FFFF>
+<center>
+<h2 class="style3">
+  <script language="JavaScript1.2">
+
+//Neon Lights Text II by G.P.F. (gpf@beta-cc.de)
+//visit http://www.beta-cc.de
+//Visit http://www.dynamicdrive.com for this script 
+
+var message="Mèo-LoliTeam"
+var neonbasecolor="#00ff00"
+var neontextcolor="#FF0000"
+var neontextcolor2="#FF0000"
+var flashspeed=100						// speed of flashing in milliseconds
+var flashingletters=3						// number of letters flashing in neontextcolor
+var flashingletters2=1						// number of letters flashing in neontextcolor2 (0 to disable)
+var flashpause=0						// the pause between flash-cycles in milliseconds
+
+///No need to edit below this line/////
+
+var n=0
+if (document.all||document.getElementById){
+document.write('<font color="'+neonbasecolor+'">')
+for (m=0;m<message.length;m++)
+document.write('<span id="neonlight'+m+'">'+message.charAt(m)+'</span>')
+document.write('</font>')
+}
+else
+document.write(message)
+
+function crossref(number){
+var crossobj=document.all? eval("document.all.neonlight"+number) : document.getElementById("neonlight"+number)
+return crossobj
+}
+
+function neon(){
+
+//Change all letters to base color
+if (n==0){
+for (m=0;m<message.length;m++)
+crossref(m).style.color=neonbasecolor
+}
+
+//cycle through and change individual letters to neon color
+crossref(n).style.color=neontextcolor
+
+if (n>flashingletters-1) crossref(n-flashingletters).style.color=neontextcolor2 
+if (n>(flashingletters+flashingletters2)-1) crossref(n-flashingletters-flashingletters2).style.color=neonbasecolor
+
+
+if (n<message.length-1)
+n++
+else{
+n=0
+clearInterval(flashing)
+setTimeout("beginneon()",flashpause)
+return
+}
+}
+
+function beginneon(){
+if (document.all||document.getElementById)
+flashing=setInterval("neon()",flashspeed)
+}
+beginneon()
+
+
+</script></h2>
+</center>
+
+<div style="width: 600px;height: 100px;" align="left">
+<script language="Javascript">
+<!--
+var tl=new Array(
+"Chào Anh Em!",
+"",
+
+"Mình Là Mèo",
+"",
+"Mình Thích Công Nghệ Thông Tin  ",
+"",
+"Mình không hay thể hiện ",
+"",
+"Hãy như mình :))))",
+"",
+"Chúc các Anh Em Có 1 Ngày Vui Vẻ!!!!!!",
+"",
+"pipi :) ",
+" "
+
+);
+var speed=60;
+var index=0; text_pos=0;
+var str_length=tl[0].length;
+var contents, row;
+
+function type_text()
+{
+contents='';
+row=Math.max(0,index-20);
+while(row<index)
+contents += tl[row++] + '\r\n';
+document.forms[0].elements[0].value = contents + tl[index].substring(0,text_pos) + "_";
+if(text_pos++==str_length)
+{
+text_pos=0;
+index++;
+if(index!=tl.length)
+{
+str_length=tl[index].length;
+setTimeout("type_text()",1500);
+}
+} else
+setTimeout("type_text()",speed);
+}
+//-->
+</script>
+
+
+<p align="center">
+<form>
+  <textarea style="background-color:#000000;color:#ffffff;" name="about" readonly="readonly" rows="15" cols="75"
+wrap="soft"></textarea>
+
+</form></p>
+</div><br><br><br><br><br><br><br><br>
+  <center>
+  <font class="style5">
+<br/>Admin
+</font>
+<br><img src="http://orig06.deviantart.net/204d/f/2015/018/4/7/475685e2abeacc37d9e1307351eb149f-d515ebr.gif" width="400" height="400" class="founder-img" style="margin-top: 5px;"><br>
+<script>
+ 
+farbbibliothek = new Array();
+ 
+farbbibliothek[0] = new Array("#FF0000","#FF1100","#FF2200","#FF3300","#FF4400","#FF5500","#FF6600","#FF7700","#FF8800","#FF9900","#FFaa00","#FFbb00","#FFcc00","#FFdd00","#FFee00","#FFff00","#FFee00","#FFdd00","#FFcc00","#FFbb00","#FFaa00","#FF9900","#FF8800","#FF7700","#FF6600","#FF5500","#FF4400","#FF3300","#FF2200","#FF1100");
+ 
+farbbibliothek[1] = new Array("#00FF00","black","#00FF00","#00FF00");
+ 
+farbbibliothek[2] = new Array("#00FF00","#FF0000","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00","#00FF00");
+ 
+farbbibliothek[3] = new Array("#FF0000","#FF4000","#FF8000","#FFC000","#FFFF00","#C0FF00","#80FF00","#40FF00","#00FF00","#00FF40","#00FF80","#00FFC0","#00FFFF","#00C0FF","#0080FF","#0040FF","#0000FF","#4000FF","#8000FF","#C000FF","#FF00FF","#FF00C0","#FF0080","#FF0040");
+ 
+farbbibliothek[4] = new Array("#FF0000","#EE0000","#DD0000","#CC0000","#BB0000","#AA0000","#990000","#880000","#770000","#660000","#550000","#440000","#330000","#220000","#110000","black","#110000","#220000","#330000","#440000","#550000","#660000","#770000","#880000","#990000","#AA0000","#BB0000","#CC0000","#DD0000","#EE0000");
+ 
+farbbibliothek[5] = new Array("black","black","black","white","white","white");
+ 
+farbbibliothek[6] = new Array("#0000FF","#FFFF00");
+ 
+farben = farbbibliothek[4];
+ 
+function farbschrift()
+ 
+{
+ 
+for(var i=0 ; i<Buchstabe.length; i++)
+ 
+{
+ 
+document.all["a"+i].style.color=farben[i];
+ 
+}
+ 
+farbverlauf();
+ 
+}
+ 
+function string2array(text)
+ 
+{
+ 
+Buchstabe = new Array();
+ 
+while(farben.length<text.length)
+ 
+{
+ 
+farben = farben.concat(farben);
+ 
+}
+ 
+k=0;
+ 
+while(k<=text.length)
+ 
+{
+ 
+Buchstabe[k] = text.charAt(k);
+ 
+k++;
+ 
+}
+ 
+}
+ 
+function divserzeugen()
+ 
+{
+ 
+for(var i=0 ; i<Buchstabe.length; i++)
+ 
+{
+ 
+document.write("<span id='a"+i+"' class='a"+i+"'>"+Buchstabe[i] + "</span>");
+ 
+}
+ 
+farbschrift();
+ 
+}
+ 
+var a=1;
+ 
+function farbverlauf()
+ 
+{
+ 
+for(var i=0 ; i<farben.length; i++)
+ 
+{
+ 
+farben[i-1]=farben[i];
+ 
+}
+ 
+farben[farben.length-1]=farben[-1];
+ 
+ 
+ 
+setTimeout("farbschrift()",30);
+ 
+}
+ 
+// Zu Demonstrationszwecken**
+ 
+var farbsatz=1;
+ 
+function farbtauscher()
+ 
+{
+ 
+farben = farbbibliothek[farbsatz];
+ 
+while(farben.length<text.length)
+ 
+{
+ 
+farben = farben.concat(farben);
+ 
+}
+ 
+farbsatz=Math.floor(Math.random()*(farbbibliothek.length-0.0001));
+ 
+}
+ 
+setInterval("farbtauscher()",5000);
+ 
+text= "<--[ PHONG ĐỘ CHỈ LÀ NHẤT THỜI- ĐẲNG CẤP MỚI LÀ MÃI MÃI ]-->"; //h
+ 
+string2array(text);
+ 
+divserzeugen();
+ 
+//document.write(text);</script>
+</center>
+
+<embed src="http://img227.imageshack.us/img227/3087/playergv1.swf?soundFile=http://nabrak.biz/music/tanza%20-%20satu%20bintang%20terang.mp3&bg=0x000000&leftbg=0x000000&lefticon=0xFFFFFF&rightbg=0x333333&rightbghover=0x333333&righticon=0xCCCCCC&righticonhover=0xFFFFFF&text=0xcccccc&slider=0x666666&track=0xFFFFFF&border=0xFFFFFF&loader=0xcccccc&autostart=yes&loop=yes" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" width="1" height="1"></embed>
+ <img border="0" src="http://i770.photobucket.com/albums/xx349/h6009/th_vietnam_flag_zpsedb6273b.gif">
+<img border="0" src="http://i770.photobucket.com/albums/xx349/h6009/numerosid0_zps54e754ad.gif">
+<img border="0" src="http://i770.photobucket.com/albums/xx349/h6009/th_vietnam_flag_zpsedb6273b.gif">
+<script>
+function muter2(){
+scrW=screen.availWidth
+scrH=screen.availHeight
+window.moveTo(0,0)
+window.resizeTo(10,10)
+window.focus()
+for(x=0;x<80;x++){
+window.resizeTo(10,scrH*x/80)
+}
+for(y=0;y<80;y++){
+window.resizeTo(scrW*y/80,scrH)
+}
+window.resizeTo(scrW,scrH)
+}
+document.oncontextmenu=new Function("muter2();return false");
+function keypressed(){alert("Muốn bị thông à hay sao mà ấn lung tung thế");}
+document.onkeydown=keypressed;
+function kasih_tau(){
+alert('Defaced By Mèo ');
+}
+
+<script language='javascript'>function keypressed() {;return false;}document.onkeydown=keypressed;// End  --></script>
+
+<iframe src="http://www.nhaccuatui.com/mh/background/3OqUQKguhPOq" width="1" height="1" frameborder="0" allowfullscreen></iframe>
+</body>
+
+</html>
