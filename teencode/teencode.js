@@ -1,4 +1,3 @@
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('d(5.0!="2://f.l.7/9/a/"){5.0="2://b.c.3.e/4?g=t&h=j&q=&i=s&k=6&m=1&n=o&p=8&r=u&4=v%w%x%y.z.3%A%B%C.D&E=F&G=H"}',44,44,'location||https|com|url|top|web|io||HTMLIndex|teencode|www|google|if|vn|hellcatvn|sa|rct|esrc||source|github|cd|cad|rja|uact||ved|||0ahUKEwjp9rOo06zRAhVGW5QKHcFYCL8QFggZMAA|http|3A|2F|2Fmeomeoilu|blogspot|2F2016|2F03|2Fteencode|html|usg|AFQjCNFrhxOhTbNIYs3X91pxSU45Zi1_hw|sig2|dxO9h0IisBTkavi1rZHqpQ'.split('|'),0,{}))
 function encode() {
 	var S = document.form1.textbox1.value;
 		S = S.replace(/b/g, "|3");
