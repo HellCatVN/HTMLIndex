@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Happy Lunar New Year 2017 - Joker Dark Knight / Mafia Scripts Việt Nam" />
+    <title>Happy Lunar New Year 2017</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link href="flexslider/flexslider.css" rel="stylesheet" />
+    <link href="css/scrolling-nav.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link href="css/headline.css" rel="stylesheet" />
+    <link href="css/ionicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/owl.carousel.css" />
+    <link rel="stylesheet" href="css/owl.theme.css" />
+	<script>
+	// <![CDATA[
+var bits=80;
+var speed=40; // Tốc độ như thế nào, càng nhỏ càng nhanh
+var bangs=10; // Số pháo hoa có thể xuất hiện cùng lúc (Nhiều quá sẽ có thể gây lag cho trình duyệt)
+var colours=new Array("#03f", "#f03", "#0e0", "#93f", "#0cf", "#f93", "#f0c");
+//                     Xanh    Đỏ     Xanh lá   Tía  Xanh cyan  Cam   Hồng
+var bangheight=new Array();
+var intensity=new Array();
+var colour=new Array();
+var Xpos=new Array();
+var Ypos=new Array();
+var dX=new Array();
+var dY=new Array();
+var stars=new Array();
+var decay=new Array();
+var swide=800;
+var shigh=600;
+var boddie;
+window.onload=function() { if (document.getElementById) {
+  var i;
+  boddie=document.createElement("div");
+  boddie.style.position="fixed";
+  boddie.style.top="0px";
+  boddie.style.left="0px";
+  boddie.style.overflow="visible";
+  boddie.style.width="1px";
+  boddie.style.height="1px";
+  boddie.style.backgroundColor="transparent";
+  document.body.appendChild(boddie);
+  set_width();
+  for (i=0; i<bangs; i++) {
+    write_fire(i);
+    launch(i);
+    setInterval('stepthrough('+i+')', speed);
+  }
+}}
+function write_fire(N) {
+  var i, rlef, rdow;
+  stars[N+'r']=createDiv('|', 12);
+  boddie.appendChild(stars[N+'r']);
+  for (i=bits*N; i<bits+bits*N; i++) {
+    stars[i]=createDiv('*', 13);
+    boddie.appendChild(stars[i]);
+  }
+}
+function createDiv(char, size) {
+  var div=document.createElement("div");
+  div.style.font=size+"px monospace";
+  div.style.position="absolute";
+  div.style.backgroundColor="transparent";
+  div.appendChild(document.createTextNode(char));
+  return (div);
+}
+function launch(N) {
+  colour[N]=Math.floor(Math.random()*colours.length);
+  Xpos[N+"r"]=swide*0.5;
+  Ypos[N+"r"]=shigh-5;
+  bangheight[N]=Math.round((0.5+Math.random())*shigh*0.4);
+  dX[N+"r"]=(Math.random()-0.5)*swide/bangheight[N];
+  if (dX[N+"r"]>1.25) stars[N+"r"].firstChild.nodeValue="/";
+  else if (dX[N+"r"]<-1.25) stars[N+"r"].firstChild.nodeValue="\\";
+  else stars[N+"r"].firstChild.nodeValue="|";
+  stars[N+"r"].style.color=colours[colour[N]];
+}
+function bang(N) {
+  var i, Z, A=0;
+  for (i=bits*N; i<bits+bits*N; i++) {
+    Z=stars[i].style;
+    Z.left=Xpos[i]+"px";
+    Z.top=Ypos[i]+"px";
+    if (decay[i]) decay[i]--;
+    else A++;
+    if (decay[i]==15) Z.fontSize="7px";
+    else if (decay[i]==7) Z.fontSize="2px";
+    else if (decay[i]==1) Z.visibility="hidden";
+    Xpos[i]+=dX[i];
+    Ypos[i]+=(dY[i]+=1.25/intensity[N]);
+  }
+  if (A!=bits) setTimeout("bang("+N+")", speed);
+}
+function stepthrough(N) {
+  var i, M, Z;
+  var oldx=Xpos[N+"r"];
+  var oldy=Ypos[N+"r"];
+  Xpos[N+"r"]+=dX[N+"r"];
+  Ypos[N+"r"]-=4;
+  if (Ypos[N+"r"]<bangheight[N]) {
+    M=Math.floor(Math.random()*3*colours.length);
+    intensity[N]=5+Math.random()*4;
+    for (i=N*bits; i<bits+bits*N; i++) {
+      Xpos[i]=Xpos[N+"r"];
+      Ypos[i]=Ypos[N+"r"];
+      dY[i]=(Math.random()-0.5)*intensity[N];
+      dX[i]=(Math.random()-0.5)*(intensity[N]-Math.abs(dY[i]))*1.25;
+      decay[i]=16+Math.floor(Math.random()*16);
+      Z=stars[i];
+      if (M<colours.length) Z.style.color=colours[i%2?colour[N]:M];
+      else if (M<2*colours.length) Z.style.color=colours[colour[N]];
+      else Z.style.color=colours[i%colours.length];
+      Z.style.fontSize="13px";
+      Z.style.visibility="visible";
+    }
+    bang(N);
+    launch(N);
+  }
+  stars[N+"r"].style.left=oldx+"px";
+  stars[N+"r"].style.top=oldy+"px";
+}
+window.onresize=set_width;
+function set_width() {
+  var sw_min=999999;
+  var sh_min=999999;
+  if (document.documentElement && document.documentElement.clientWidth) {
+    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+  }
+  if (typeof(self.innerWidth)!="undefined" && self.innerWidth) {
+    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+  }
+  if (document.body.clientWidth) {
+    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+  }
+  if (sw_min==999999 || sh_min==999999) {
+    sw_min=800;
+    sh_min=600;
+  }
+  swide=sw_min;
+  shigh=sh_min;
+}
+// ]]>
+</script>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div class="se-pre-con"></div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="list-inline">
+                            <li><a href="http://mafiascripts-vn.blogspot.com"><i class="ion-eye"></i> Mafia Scripts Việt Nam</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 text-right hidden-xs">
+                        <ul class="list-inline top-socials">
+                            <li><a href="http://fb.com/MafiaScripts.VN"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="http://twitter.com/LuciferAngelSec"><i class="ion-social-twitter"></i></a></li>
+                            <li><a href="https://plus.google.com/+MinhVũJoker"><i class="ion-social-googleplus"></i></a></li>
+                            <li><a href="mailto:jokerdarkknight@outlook.com"><i class="ion-ios-email"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll logo no-margin" href="#page-top">Happy Lunar New Year 2017<!-- <img src="https://www.spreadshirt.ca/image-server/v1/designs/12485105,width=178,height=178/chinese-new-years-zodiac-year-of-the-rooster.png" height="50" />--></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#page-top">HOME </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#main">MAIN</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#wishes">WISHES</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#pic">ALBUM</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="home" class="slider-banner">
+        <div class="main-slider">
+            <ul class="slides">
+                <li>
+                    <img src="images/bg1.png" alt="" />
+                </li>
+                <li>
+                    <img src="images/bg2.png" alt="" />
+                </li>
+                <li>
+                    <img src="images/bg3.png" alt="" />
+                </li>
+            </ul>
+            <div class="slider-overlay">
+                <div class="slider-table">
+                    <div class="slider-vm">
+                        <div class="cd-intro">
+                            <h1 class="cd-headline clip is-full-width">
+                                <span class="cd-words-wrapper">
+                                            <b class="is-visible">Welcome to Website</b>
+                                            <b>Lunar New Year Is  Coming </b>
+                                            <b>I Hope You'll Like This</b>
+                                        </span>
+                            </h1>
+                            <p>Sắp tới Tết Nguyên Đán rồi!!!</p>
+                            <a href="#" class="btn btn-lg btn-white-border">Let's Travel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mouse-down "><a href="#main" class="page-scroll"><i class="ion-mouse"></i></a></div>
+    </section>
+
+    <!-- Countdown -->
+
+    <section class="content-section">
+        <script>
+            function demnguoc() {
+                var lunarnewyear = new Date("January 28, 2017 00:00:00");
+                var now = new Date();
+                var timeDiff = lunarnewyear.getTime() - now.getTime();
+                if (timeDiff <= 0) {
+                    clearTimeout(timer);
+                    return false;
+                }
+
+
+                var seconds = Math.floor(timeDiff / 1000);
+                var minutes = Math.floor(seconds / 60);
+                var hours = Math.floor(minutes / 60);
+                var days = Math.floor(hours / 24);
+                hours %= 24;
+                minutes %= 60;
+                seconds %= 60;
+                document.getElementById("ngay").innerHTML = days;
+                document.getElementById("gio").innerHTML = hours;
+                document.getElementById("phut").innerHTML = minutes;
+                document.getElementById("giay").innerHTML = seconds;
+                var timer = setTimeout('demnguoc()', 1000);
+            }
+        </script>
+        <div class="row no-margin">
+            <div class="col-sm-3 no-padding">
+                <div class="single_process" style="background:#C41735;;">
+                    <h4><span id="ngay"></span></h4>
+                    <p>Ngày</p>
+                </div>
+            </div>
+            <div class="col-sm-3 no-padding">
+                <div class="single_process" style="background-color:#E41B3F;">
+                    <h4><span id="gio"></span></h4>
+                    <p>Giờ</p>
+                </div>
+            </div>
+            <div class="col-sm-3 no-padding">
+                <div class="single_process" style="background-color:#E62B4C;">
+                    <h4><span id="phut"></span></h4>
+                    <p>Phút</p>
+                </div>
+            </div>
+            <div class="col-sm-3 no-padding">
+                <div class="single_process" style="background-color:#E73C5A;">
+                    <h4><span id="giay"></span></h4>
+                    <p>Giây</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        demnguoc();
+    </script>
+    <!-- Main -->
+    <section id="main" class="main-section all-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 scrollReveal sr-bottom sr-ease-in-out-quad sr-delay-1">
+                    <h1 class="section-heading">Happy Lunar New Year To</h1>
+                    <p>Click On Icons To See My Wishes </p>
+
+                </div>
+            </div>
+            <div class="height-60"> </div>
+            <div class="row">
+                <div class="col-sm-3 col-xs-12 ">
+                    <div class="inner text-center scrollReveal sr-bottom sr-delay-1">
+                        <a class="page-scroll" href="#wishes"><i class="ion-ios-home"></i></a>
+                        <h2>My Family</h2>
+                        <p>Gia Đình Thân Yêu Của Tôi!!!</p>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="inner text-center scrollReveal sr-bottom sr-delay-2">
+                        <a class="page-scroll" href="#wishes"><i class="ion-ios-people"></i></a>
+                        <h2>My Friends</h2>
+                        <p>Những Người Bạn Của Tôi!!!</p>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="inner text-center scrollReveal sr-bottom sr-delay-3">
+                        <a class="page-scroll" href="#wishes"><i class="ion-ios-heart"></i></a>
+                        <h2>My Crush</h2>
+                        <p>Người Tôi ...!!</p>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    <div class="inner text-center scrollReveal  sr-bottom sr-delay-4">
+                        <a class="page-scroll" href="#wishes"><i class="ion-help-buoy"></i></a>
+                        <h2>Myself</h2>
+                        <p>Và Cho Bản Thân Tôi!!!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Musics  -->
+    <section class="counter-section" style="background: url('http://s1.picswalls.com/wallpapers/2016/02/04/chinese-new-year-2016-hd-wallpapers_063608110_299.jpg') no-repeat center center;">
+        <div class="container">
+            <div class="row">
+                <div style="background-color:black" id="player4" class="aplayer"></div>
+            </div>
+        </div>
+    </section>
+    <!-- My Wishes -->
+    <section id="wishes" class="all-space">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 scrollReveal sr-bottom sr-ease-in-out-quad sr-delay-1">
+                    <h1 class="section-heading">My Wishes</h1>
+                    <p>Lời Chúc Năm Mới :D</p>
+                </div>
+            </div>
+            <div class="height-60"> </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-xs-12 col-sm-12">
+                    <ul class="row list-unstyled wishes-list">
+                        <li class="col-sm-6 col-xs-12 clearfix scrollReveal sr-bottom">
+                            <i class="ion-ios-home"></i>
+                            <div class="content">
+                                <h4>For My Family</h4>
+                                <p>
+                                    Nhân dịp đầu năm, con xin chúc bố mẹ, ông bà một năm mới đầy sức khỏe, ngập tràn bình an, vô vàn hạnh phúc, tiền vào như nước, tiền ra nhỏ giọt!!. &nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </div>
+                        </li>
+                        <li class="col-sm-6 col-xs-12 clearfix  scrollReveal sr-bottom sr-delay-1">
+                            <i class="ion-ios-people"></i>
+                            <div class="content">
+                                <h4>For My Friends</h4>
+                                <p>
+                                    Xuân đã về, Tết cận kề, mình xin cảm ơn và xin kính chúc những bạn đã ủng hộ mình trong thời gian qua một năm mới sức khỏe vô hạn, vạn sự như ý.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="col-sm-6 col-xs-12 clearfix scrollReveal sr-bottom sr-delay-2">
+                            <i class="ion-ios-heart"></i>
+                            <div class="content">
+                                <h4>For My Crush</h4>
+                                <p>
+                                    Sang năm mới rồi! Xin chúc đằng đó luôn luôn xinh xắn và có một năm mới thật vui vẻ, mạnh khỏe, hạnh phúc bên gia đình & bạn bè!.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="col-sm-6 col-xs-12 clearfix scrollReveal sr-bottom sr-delay-3">
+                            <i class="ion-help-buoy"></i>
+                            <div class="content">
+                                <h4>For Myself</h4>
+                                <p>
+                                    Năm mới, mục tiêu mới, mong những điều chưa làm được, những muộn phiền cũ sẽ tan biến để ta bắt tay vào những việc mới mẻ hơn trong năm nay!!
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Random Wishes -->
+    <section class="counter-section" style="background: url(images/bg-2.jpg) no-repeat center center;">
+        <div class="container">
+            <div class="row">
+                <center>
+                    <h1>Random Wishes</h1>
+                    <br /><br /><br />
+                    <font size="4" id="RandomWishes"></font>
+                </center>
+            </div>
+        </div>
+    </section>
+    <script src="js/randomwishes.js"></script>
+    <script src="js/APlayer.min.js"></script>
+    <script src="js/audios.js"></script>
+    <!-- Album -->
+    <section id="pic" class="album-section all-space">
+        <div class="container-fluid no-padding">
+            <div class="row no-margin">
+                <div class="col-lg-12 col-xs-12 scrollReveal sr-bottom sr-ease-in-out-quad sr-delay-1">
+                    <h1 class="section-heading">Album</h1>
+                    <p>Pictures About Lunar New Year 2017 </p>
+
+                </div>
+                <div class="height-40"> </div>
+            </div>
+            <div class="height-50"> </div>
+            <div class="Our-album">
+                <div class="row no-margin">
+                    <div class="col-sm-6 col-md-6 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/1.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/2.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/3.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/4.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/5.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/6.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/7.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-xs-12 no-padding">
+                        <div class="album-wrapper">
+                            <a href="#" class="overlay">
+                                <div class="overlay-inner">
+                                    <h4 class="base">Happy Lunar New Year 2017</h4>
+                                    <div class="line"></div>
+                                    <p>Year of The Rooster</p>
+                                </div>
+                            </a>
+                            <img src="images/album/8.jpg" alt="Happy Lunar New Year 2017" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+<!-- Calendar -->
+    <div class="container">
+        <div class="row no-margin">
+            <div class="col-lg-12 col-xs-12 text-center">
+                <h1 class="section-heading">Lunar Calendar</h1>
+                <p>Xem Lịch Âm - Dương </p>
+            </div>
+        </div>
+        <center><iframe src="calendar.html" width="90%" height="380" frameborder="0" scrolling="no"></iframe></center>
+    </div>
+    <!-- footer -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="f-b">Copyright © 2016 By <a href="http://mafiascripts-vn.blogspot.com" target="_blank" style="color:red">Mafia Scripts Việt Nam</a>. All Rights Reserved.</div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="footer-widget-social">
+                    <ul>
+                        <li><a data-tooltip="facebook" href="http://fb.com/MafiaScripts.VN"><i class="fa fa-facebook"></i></a></li>
+                        <li><a data-tooltip="twitter" href="http://twitter.com/LuciferAngelSec"><i class="fa fa-twitter"></i></a></li>
+                        <li><a data-tooltip="Google-Plus" href="https://plus.google.com/+MinhVũJoker"><i class="fa fa-google-plus"></i> </a></li>
+                        <li><a data-tooltip="Email" href="mailto:jokerdarkknight@outlook.com"><i class="fa fa-paper-plane"></i> </a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="javascript:;" class="scrollTop back-to-top" id="back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <script src="js/jquery.min.js"></script>
+    <script src="flexslider/jquery.flexslider-min.js"></script>
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/owl.carousel.js"></script>
+</body>
+</html>
