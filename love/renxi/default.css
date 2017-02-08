@@ -1,0 +1,15 @@
+body{margin:0;padding:0;background:#ffe;font-size:30px;font-family:'Pacifico', serif;color:#231F20;overflow:auto}
+a {color:#000;font-size:20px;}
+#main{width:100%;}
+#wrap{position:relative;margin:0 auto;width:1100px;height:680px;margin-top:15px;}
+#text{width:400px;height:425px;top:0px;position:absolute;}
+#code{display:none;font-size:16px;}
+#clock-box {position:absolute;left:60px;top:530px;font-size:35px;display:none;}
+#clock-box a {font-size:70px;text-decoration:none;}
+#clock{margin-left:48px;}
+#clock .digit {font-size:50px;}
+#canvas{margin:0 auto;width:1100px;height:680px;}
+#error{margin:0 auto;text-align:center;margin-top:60px;display:none;}
+.hand{cursor:pointer;}
+.say{margin-left:5px;}
+.space{margin-right:150px;}
